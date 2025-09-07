@@ -1,30 +1,24 @@
-import math
-
-def printPowerS(S, setSize):
-    powerSetSize = int(math.pow(2, setSize))
-
-    outer = 0
-    inner = 0
-
-    for outer in range(0,powerSetSize):
-        for inner in range(0,setSize):
-            if (outer & (1 << inner)) > 0:
-                print(S[inner], end = "")
-        print("")
+def printPowerC(word):
+    n = len(word)
+    
+    for m in range(1, 1 << n):  
+        ListOC = []
+        for i in range(n):
+            if m & (1 << i):  
+                ListOC.append(word[i])
+        print("".join(ListOC))
 
 
 try:
-    size = int(input("Enter a number(make it under 6 so it doesnt crash):"))
-    Set = []
-    for i in range(0,size):
-        n = input("Enter letters: ")
-        if not n.isalpha():  
-            raise ValueError
-        Set.append(n)
-    printPowerS(Set,len(Set))
+    w = input("Enter a word: ")
+    if not w.isalpha():
+        raise ValueError
     
+    print("\nCombinations of letters:")
+    printPowerC(w)
 
 except ValueError:
-    print("Enter valid characters")
+    print("Enter valid string")
+
 
 
